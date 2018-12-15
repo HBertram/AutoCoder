@@ -1,39 +1,33 @@
 ﻿Public Class TemplateRichTextBox
     Inherits RichTextBox
 
-    Friend Class KeywordSpliter
-        Property m_strKeyword As String
-
-        Property m_oColor As Color
-
-        Private m_iNextShownIndex As Integer = -99
-        Private m_iLastFindIndex As Integer = -1
-
-        Public Function GetNextShownIndex(text As String, index As Integer) As Integer
-            If index <> m_iLastFindIndex AndAlso m_iNextShownIndex <> -1 Then
-                m_iNextShownIndex = CalNextShownIndex(text, index)
-                m_iLastFindIndex = index
-            End If
-            Return m_iNextShownIndex
-        End Function
-
-        Private Function CalNextShownIndex(text As String, index As Integer) As Integer
-            Return text.IndexOf(m_strKeyword, index)
-        End Function
-
-        Public Sub Reset()
-            m_iNextShownIndex = -99
-            m_iLastFindIndex = -1
-        End Sub
-
-    End Class
+    Private _FileName As String
 
     Private _IdentityStack As Stack(Of KeywordSpliter) = New Stack(Of KeywordSpliter)
 
     Private _KeywordSpliters As List(Of KeywordSpliter) = New List(Of KeywordSpliter)
 
+    Public Sub New(Optional strFileName As String = "")
+        _FileName = strFileName
+        Init()
+    End Sub
+    Public Sub SetFileName(strFileName As String)
+        _FileName = strFileName
+    End Sub
     Public Sub New()
-        WordWrap = False
+        Init()
+    End Sub
+    Public Function IsFileConnected() As Boolean
+        Return Not String.IsNullOrWhiteSpace(_FileName)
+    End Function
+    Public Sub Save()
+        If String.IsNullOrWhiteSpace(_FileName) Then
+            Return
+        End If
+        Me.SaveFile(_FileName, RichTextBoxStreamType.PlainText)
+    End Sub
+
+    Private Sub Init()
         _KeywordSpliters.Add(New KeywordSpliter With {
            .m_oColor = Color.Red,
            .m_strKeyword = "##"
@@ -47,6 +41,10 @@
            .m_strKeyword = ""
         })
     End Sub
+
+    Public Function ReplaceTemplate(oTemplateMark As TemplateMark) As String
+        Return oTemplateMark.ReplaceAll(Text)
+    End Function
 
     Protected Overrides Sub OnTextChanged(e As EventArgs)
         MyBase.OnTextChanged(e)
@@ -107,9 +105,33 @@
         End While
         Reset()
 
-
-
-
     End Sub
 
+
+    Friend Class KeywordSpliter
+        Property m_strKeyword As String
+
+        Property m_oColor As Color
+
+        Private m_iNextShownIndex As Integer = -99
+        Private m_iLastFindIndex As Integer = -1
+
+        Public Function GetNextShownIndex(text As String, index As Integer) As Integer
+            If index <> m_iLastFindIndex AndAlso m_iNextShownIndex <> -1 Then
+                m_iNextShownIndex = CalNextShownIndex(text, index)
+                m_iLastFindIndex = index
+            End If
+            Return m_iNextShownIndex
+        End Function
+
+        Private Function CalNextShownIndex(text As String, index As Integer) As Integer
+            Return text.IndexOf(m_strKeyword, index)
+        End Function
+
+        Public Sub Reset()
+            m_iNextShownIndex = -99
+            m_iLastFindIndex = -1
+        End Sub
+
+    End Class
 End Class

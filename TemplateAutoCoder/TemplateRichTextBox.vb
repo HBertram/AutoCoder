@@ -28,6 +28,7 @@
     End Sub
 
     Private Sub Init()
+        Me.AllowDrop = True
         _KeywordSpliters.Add(New KeywordSpliter With {
            .m_oColor = Color.Red,
            .m_strKeyword = "##"
@@ -105,6 +106,16 @@
         End While
         Reset()
 
+    End Sub
+
+    Public Sub HandleDragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+        If (e.Data.GetDataPresent(DataFormats.FileDrop)) Then
+            Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
+            If files.Count > 0 Then
+                Me._FileName = files(0)
+                Me.LoadFile(files(0), RichTextBoxStreamType.PlainText)
+            End If
+        End If
     End Sub
 
 

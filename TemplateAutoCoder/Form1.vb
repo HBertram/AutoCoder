@@ -70,21 +70,23 @@ Public Class Form1
         oTabControll.SelectTab(oTabPage)
     End Sub
     Private Function CreateNewTabPageWithRichTextBox(strFileName As String) As TabPage
-        Dim oTabPage As TabPage = New TabPage()
-        Dim oTemplateRichTextBox As TemplateRichTextBox = New TemplateRichTextBox(strFileName)
-        oTemplateRichTextBox.Dock = DockStyle.Fill
-        oTemplateRichTextBox.Location = New System.Drawing.Point(3, 3)
-        oTemplateRichTextBox.Name = strFileName + "_richbox"
-        oTemplateRichTextBox.WordWrap = False
-
-
-        oTabPage.ToolTipText = strFileName
         Dim strSafeFileName As String = strFileName.Substring(If(strFileName.LastIndexOf("\") >= 0, strFileName.LastIndexOf("\") + 1, 0))
+        Dim oTemplateRichTextBox As TemplateRichTextBox = New TemplateRichTextBox(strFileName) With {
+            .Dock = DockStyle.Fill,
+            .Location = New System.Drawing.Point(3, 3),
+            .Name = strFileName + "_richbox",
+            .WordWrap = False
+        }
+
+        Dim oTabPage As TabPage = New TabPage With {
+            .ToolTipText = strFileName,
+            .Location = New System.Drawing.Point(4, 22),
+            .Name = strSafeFileName,
+            .Text = strSafeFileName,
+            .UseVisualStyleBackColor = True
+        }
+
         oTabPage.Controls.Add(oTemplateRichTextBox)
-        oTabPage.Location = New System.Drawing.Point(4, 22)
-        oTabPage.Name = strSafeFileName
-        oTabPage.Text = strSafeFileName
-        oTabPage.UseVisualStyleBackColor = True
         Return oTabPage
     End Function
 
@@ -94,4 +96,12 @@ Public Class Form1
         Dim oTemplateRichTextBox As TemplateRichTextBox = TemplateTabControl.SelectedTab.Controls(0)
         oTemplateRichTextBox.Text = oTemplateRichTextBox.ReplaceTemplate(oTemplateMark)
     End Sub
+
+    Private Sub CloseTabPage(sender As Object, e As EventArgs) Handles ConfigTabControl.DoubleClick, TemplateTabControl.DoubleClick
+        Dim oTabControl As TabControl = sender
+        oTabControl.Controls.Remove(oTabControl.SelectedTab)
+    End Sub
+
+
+
 End Class

@@ -36,18 +36,16 @@ Partial Class Form1
         Me.执行ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.TemplateTabControl = New System.Windows.Forms.TabControl()
-        Me.ConfigTabControl = New System.Windows.Forms.TabControl()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.RichTextBox1 = New TemplateAutoCoder.TemplateRichTextBox()
-        Me.TemplateRichTextBox1 = New TemplateAutoCoder.TemplateRichTextBox()
         Me.example_template = New System.Windows.Forms.TabPage()
         Me.TemplateRichTextBox2 = New TemplateAutoCoder.TemplateRichTextBox()
+        Me.ConfigTabControl = New System.Windows.Forms.TabControl()
         Me.example_config = New System.Windows.Forms.TabPage()
         Me.TemplateRichTextBox3 = New TemplateAutoCoder.TemplateRichTextBox()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.TemplateTabControl.SuspendLayout()
-        Me.ConfigTabControl.SuspendLayout()
         Me.example_template.SuspendLayout()
+        Me.ConfigTabControl.SuspendLayout()
         Me.example_config.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -143,36 +141,6 @@ Partial Class Form1
         Me.TemplateTabControl.Size = New System.Drawing.Size(414, 425)
         Me.TemplateTabControl.TabIndex = 3
         '
-        'ConfigTabControl
-        '
-        Me.ConfigTabControl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
-        Me.ConfigTabControl.Controls.Add(Me.example_config)
-        Me.ConfigTabControl.Location = New System.Drawing.Point(413, 28)
-        Me.ConfigTabControl.Name = "ConfigTabControl"
-        Me.ConfigTabControl.SelectedIndex = 0
-        Me.ConfigTabControl.Size = New System.Drawing.Size(387, 425)
-        Me.ConfigTabControl.TabIndex = 4
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox1.Location = New System.Drawing.Point(3, 3)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(373, 393)
-        Me.RichTextBox1.TabIndex = 0
-        Me.RichTextBox1.Text = ""
-        Me.RichTextBox1.WordWrap = False
-        '
-        'TemplateRichTextBox1
-        '
-        Me.TemplateRichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TemplateRichTextBox1.Location = New System.Drawing.Point(3, 3)
-        Me.TemplateRichTextBox1.Name = "TemplateRichTextBox1"
-        Me.TemplateRichTextBox1.Size = New System.Drawing.Size(400, 393)
-        Me.TemplateRichTextBox1.TabIndex = 2
-        Me.TemplateRichTextBox1.Text = ""
-        Me.TemplateRichTextBox1.WordWrap = False
-        '
         'example_template
         '
         Me.example_template.Controls.Add(Me.TemplateRichTextBox2)
@@ -186,6 +154,7 @@ Partial Class Form1
         '
         'TemplateRichTextBox2
         '
+        Me.TemplateRichTextBox2.AllowDrop = True
         Me.TemplateRichTextBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TemplateRichTextBox2.Location = New System.Drawing.Point(3, 3)
         Me.TemplateRichTextBox2.Name = "TemplateRichTextBox2"
@@ -194,6 +163,17 @@ Partial Class Form1
         Me.TemplateRichTextBox2.Text = "<html>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & "<head>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "<title>##title##</title>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & "</head>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & "<body>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "<ul>" & Global.Microsoft.VisualBasic.ChrW(10) & "$$" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "<li class" &
     "=""##class123##"">" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "<a href=""/info/##href##"">##text##</a>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "</li>" & Global.Microsoft.VisualBasic.ChrW(10) & "$$" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) & Global.Microsoft.VisualBasic.ChrW(9) & "</ul>" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(9) &
     "</body>" & Global.Microsoft.VisualBasic.ChrW(10) & "</html>"
+        '
+        'ConfigTabControl
+        '
+        Me.ConfigTabControl.AllowDrop = True
+        Me.ConfigTabControl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.ConfigTabControl.Controls.Add(Me.example_config)
+        Me.ConfigTabControl.Location = New System.Drawing.Point(413, 28)
+        Me.ConfigTabControl.Name = "ConfigTabControl"
+        Me.ConfigTabControl.SelectedIndex = 0
+        Me.ConfigTabControl.Size = New System.Drawing.Size(387, 425)
+        Me.ConfigTabControl.TabIndex = 4
         '
         'example_config
         '
@@ -208,6 +188,7 @@ Partial Class Form1
         '
         'TemplateRichTextBox3
         '
+        Me.TemplateRichTextBox3.AllowDrop = True
         Me.TemplateRichTextBox3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TemplateRichTextBox3.Location = New System.Drawing.Point(3, 3)
         Me.TemplateRichTextBox3.Name = "TemplateRichTextBox3"
@@ -230,8 +211,8 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.TemplateTabControl.ResumeLayout(False)
-        Me.ConfigTabControl.ResumeLayout(False)
         Me.example_template.ResumeLayout(False)
+        Me.ConfigTabControl.ResumeLayout(False)
         Me.example_config.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -246,8 +227,6 @@ Partial Class Form1
     Friend WithEvents 推出ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TemplateTabControl As TabControl
     Friend WithEvents ConfigTabControl As TabControl
-    Friend WithEvents TemplateRichTextBox1 As TemplateRichTextBox
-    Friend WithEvents RichTextBox1 As TemplateRichTextBox
     Friend WithEvents 创建模板ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 创建配置ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 模板ToolStripMenuItem As ToolStripMenuItem
